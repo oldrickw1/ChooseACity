@@ -2,9 +2,13 @@ package com.example.chooseacity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +25,20 @@ public class MainActivity extends AppCompatActivity {
 
         AutoCompleteCityAdapter adapter = new AutoCompleteCityAdapter(this, cities);
         selectCityACTV.setAdapter(adapter);
+
+        selectCityACTV.setOnItemClickListener((parent, view, position, id) -> {
+            CityData cityData = (CityData) parent.getItemAtPosition(position);
+            startIntentForSelectedCity(cityData);
+        });
+
+
+    }
+
+    private void startIntentForSelectedCity(CityData cityData) {
+        Intent intent = new Intent(this, WeatherInformation.class);
+        intent.putExtra("CityName", cityData.getCityName());
+        intent.putExtra("CityCountry", cityData.getCountry());
+        startActivity(intent);
     }
 
     private ArrayList<CityData> getCityData() {

@@ -1,6 +1,7 @@
 package com.example.chooseacity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,11 +47,7 @@ public class AutoCompleteCityAdapter extends ArrayAdapter<CityData> {
             cityTextView.setText(cityData.getCityName());
             countryTextView.setText(cityData.getCountry());
         }
-        convertView.setOnClickListener((view ->  {
-            String cityName = cityData.getCityName();
-            Toast.makeText(getContext(), cityName, Toast.LENGTH_SHORT).show();
 
-        }));
         return convertView;
     }
 
